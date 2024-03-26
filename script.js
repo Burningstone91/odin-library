@@ -16,9 +16,14 @@ function Book(title, author, pages, read) {
   };
 }
 
-function addBookToLibrary() {
-
+function addBookToLibrary(title, author, pages, read) {
+  const newBook = new Book(title, author, pages, read)
+  myArray.push(newBook);
 }
 
-const testBook = new Book("Hobbit", "Dimitri", 300, true);
-console.log(testBook.info());
+console.log(myArray);
+
+addBookToLibrary("Hobbit", "Dimitri", 300, true);
+addBookToLibrary("mindset", "Dimitri", 200, false);
+
+console.log(myArray);
