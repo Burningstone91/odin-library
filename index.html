@@ -25,10 +25,14 @@
         <label for="pages">Pages</label>
         <input type="text" id="pages" name="pages">
       </div>
-      <div>
-        <label for="read">Read?</label>
-        <input type="checkbox" id="read" name="read">
+      <div class="readToggle">
+        <p>Read?</p>
+        <label class="switch" for="read">
+          <input type="checkbox" id="read" name="read">
+          <span class="slider"></span>
+        </label>
       </div>
+
       <div class="buttons">
         <button value="cancel" formmethod="dialog">Cancel</button>
         <button id="confirmBtn" value="default">Add Book</button>
