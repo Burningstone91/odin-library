@@ -1,0 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.book-grid {
+  padding: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 33%));
+  gap: 16px;
+}
+
+.card {
+  border: solid 1px;
+  border-radius: 12px;
+  padding: 10px;
+}
