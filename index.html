@@ -12,15 +12,16 @@
 
   <dialog class="bookDialog">
     <form>
-      <div>
+      <h2>Enter Book Information</h2>
+      <div class="input">
         <label for="title">Book Title</label>
         <input type="text" id="title" name="title">
       </div>
-      <div>
+      <div class="input">
         <label for="author">Author</label>
         <input type="text" id="author" name="author">
       </div>
-      <div>
+      <div class="input">
         <label for="pages">Pages</label>
         <input type="text" id="pages" name="pages">
       </div>
@@ -28,9 +29,9 @@
         <label for="read">Read?</label>
         <input type="checkbox" id="read" name="read">
       </div>
-      <div>
+      <div class="buttons">
         <button value="cancel" formmethod="dialog">Cancel</button>
-        <button id="confirmBtn" value="default">Confirm</button>
+        <button id="confirmBtn" value="default">Add Book</button>
       </div>
     </form>
   </dialog>

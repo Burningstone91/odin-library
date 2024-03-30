@@ -16,9 +16,67 @@
   padding: 10px;
 }
 
+/* Dialog */
+
 .bookDialog {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  padding: 16px;
+  height: 30vh;
+  width: 40vw;
+}
+
+.bookDialog::backdrop {
+  backdrop-filter: blur(5px);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  gap: 16px;
+}
+
+.input {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+input[type="text"] {
+  width: 150px;
+  height: 28px;
+  border: 1px solid rgb(124, 119, 119, 0.2);
+  border-radius: 4px;
+  padding-left: 12px;
+}
+
+input:focus {
+  outline: none;
+  border: 1px solid rgb(39, 24, 170);
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.3);
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 32px;
+  margin-top: 16px;
+}
+
+.buttons > button {
+  background-color: #596D48;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  width: 120px;
+  height: 32px;
+  border-radius: 8px;
+  border-style: none;
 }
