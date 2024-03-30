@@ -1,5 +1,8 @@
 const library = [];
 const bookGrid = document.querySelector(".book-grid");
+const newBookBtn = document.querySelector(".newBookBtn");
+const addBookDialog = document.querySelector(".bookDialog");
+const confirmBtn = document.querySelector("#confirmBtn")
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -46,6 +49,15 @@ function showBooks () {
 function resetBookGrid () {
   bookGrid.innerHTML = "";
 }
+
+newBookBtn.addEventListener("click", () => {
+  addBookDialog.showModal();
+})
+
+confirmBtn.addEventListener("click", (event) => {
+  event.preventDefault();
+});
+
 
 addBookToLibrary("Hobbit", "Dimitri", 300, true);
 addBookToLibrary("mindset", "Dimitri", 200, false);
