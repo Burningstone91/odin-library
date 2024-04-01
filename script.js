@@ -50,6 +50,10 @@ function resetBookGrid () {
   bookGrid.innerHTML = "";
 }
 
+function isInLibrary (bookTitle) {
+  return library.some((book) => book.title === bookTitle);
+}
+
 newBookBtn.addEventListener("click", () => {
   addBookDialog.showModal();
 })
@@ -62,6 +66,11 @@ confirmBtn.addEventListener("click", (event) => {
   const pages = document.querySelector("#pages");
   const read = document.querySelector("#read");
   
+  if (isInLibrary(title.value) === true) {
+    alert("Book is already in the Library!");
+    return;
+  }
+
   addBookToLibrary(
     title.value,
     author.value,
