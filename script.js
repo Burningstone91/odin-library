@@ -1,6 +1,7 @@
 const library = [];
 const bookGrid = document.querySelector(".book-grid");
 const newBookBtn = document.querySelector(".newBookBtn");
+const form = document.querySelector("form");
 const addBookDialog = document.querySelector(".bookDialog");
 const confirmBtn = document.querySelector("#confirmBtn");
 
@@ -77,7 +78,8 @@ confirmBtn.addEventListener("click", (event) => {
     pages.value,
     read.checked
   )
-
+  
+  form.reset();
   addBookDialog.close();
 });
 
