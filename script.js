@@ -32,22 +32,26 @@ function showBooks () {
     const author = document.createElement("p");
     const pages = document.createElement("p");
     const read = document.createElement("p");
+    const removeBtn = document.createElement("button")
 
     card.classList.add("card");
     title.classList.add("title");
     author.classList.add("author");
     pages.classList.add("pages");
     read.classList.add("read");
+    removeBtn.onclick = removeBook;
 
     title.textContent = book.title;
     author.textContent = book.author;
     pages.textContent = book.pages;
     read.textContent = book.read ? "Yes" : "No";
+    removeBtn.textContent = "Remove";
 
     card.appendChild(title);
     card.appendChild(author);
     card.appendChild(pages);
     card.appendChild(read);
+    card.appendChild(removeBtn);
 
     bookGrid.appendChild(card);
   });
@@ -59,6 +63,11 @@ function resetBookGrid () {
 
 function isInLibrary (bookTitle) {
   return library.some((book) => book.title === bookTitle);
+}
+
+const removeBook = (e) => {
+  const book = e.target.parentNode.firstChild.innerText;
+  removeBookFromLibrary(book);
 }
 
 newBookBtn.addEventListener("click", () => {
