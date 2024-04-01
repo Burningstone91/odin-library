@@ -1,4 +1,4 @@
-const library = [];
+let library = [];
 const bookGrid = document.querySelector(".book-grid");
 const newBookBtn = document.querySelector(".newBookBtn");
 const form = document.querySelector("form");
@@ -15,11 +15,17 @@ function Book(title, author, pages, read) {
 function addBookToLibrary(title, author, pages, read) {
   const newBook = new Book(title, author, pages, read);
   library.push(newBook);
-  resetBookGrid();
+  showBooks();
+}
+
+function removeBookFromLibrary(title) {
+  library = library.filter((book) => book.title != title);
   showBooks();
 }
 
 function showBooks () {
+  resetBookGrid();
+
   library.forEach(book => {
     const card = document.createElement("div");
     const title = document.createElement("h3");
@@ -86,5 +92,3 @@ confirmBtn.addEventListener("click", (event) => {
 
 addBookToLibrary("Hobbit", "Dimitri", 300, true);
 addBookToLibrary("mindset", "Dimitri", 200, false);
-
-console.log(library);
