@@ -23,6 +23,12 @@ function removeBookFromLibrary(title) {
   showBooks();
 }
 
+function toggleReadStatus(title) {
+  const book = library.find(book => book.title === title);
+  book.read = !book.read;
+  showBooks();
+}
+
 function showBooks () {
   resetBookGrid();
 
@@ -32,25 +38,29 @@ function showBooks () {
     const author = document.createElement("p");
     const pages = document.createElement("p");
     const read = document.createElement("p");
-    const removeBtn = document.createElement("button")
+    const readBtn = document.createElement("button");
+    const removeBtn = document.createElement("button");
 
     card.classList.add("card");
     title.classList.add("title");
     author.classList.add("author");
     pages.classList.add("pages");
     read.classList.add("read");
+    readBtn.onclick = toggleRead;
     removeBtn.onclick = removeBook;
 
     title.textContent = book.title;
     author.textContent = book.author;
     pages.textContent = book.pages;
     read.textContent = book.read ? "Yes" : "No";
+    readBtn.textContent = book.read ? "Not Read" : "Read";
     removeBtn.textContent = "Remove";
 
     card.appendChild(title);
     card.appendChild(author);
     card.appendChild(pages);
     card.appendChild(read);
+    card.appendChild(readBtn);
     card.appendChild(removeBtn);
 
     bookGrid.appendChild(card);
@@ -68,6 +78,11 @@ function isInLibrary (bookTitle) {
 const removeBook = (e) => {
   const book = e.target.parentNode.firstChild.innerText;
   removeBookFromLibrary(book);
+}
+
+const toggleRead = (e) => {
+  const book = e.target.parentNode.firstChild.innerText;
+  toggleReadStatus(book);
 }
 
 newBookBtn.addEventListener("click", () => {
