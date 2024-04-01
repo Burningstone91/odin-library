@@ -2,7 +2,7 @@ const library = [];
 const bookGrid = document.querySelector(".book-grid");
 const newBookBtn = document.querySelector(".newBookBtn");
 const addBookDialog = document.querySelector(".bookDialog");
-const confirmBtn = document.querySelector("#confirmBtn")
+const confirmBtn = document.querySelector("#confirmBtn");
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -56,6 +56,20 @@ newBookBtn.addEventListener("click", () => {
 
 confirmBtn.addEventListener("click", (event) => {
   event.preventDefault();
+  
+  const title = document.querySelector("#title");
+  const author = document.querySelector("#author");
+  const pages = document.querySelector("#pages");
+  const read = document.querySelector("#read");
+  
+  addBookToLibrary(
+    title.value,
+    author.value,
+    pages.value,
+    read.checked
+  )
+
+  addBookDialog.close();
 });
 
 
