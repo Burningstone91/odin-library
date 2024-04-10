@@ -1,38 +1,56 @@
-let library = [];
 const bookGrid = document.querySelector(".book-grid");
 const newBookBtn = document.querySelector(".newBookBtn");
 const form = document.querySelector("form");
 const addBookDialog = document.querySelector(".bookDialog");
 const confirmBtn = document.querySelector("#confirmBtn");
 
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
+class Book {
+  constructor(
+    title = "Unknown",
+    author = "Unknown",
+    pages = 0,
+    read = false
+  ) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  }
 }
 
-function addBookToLibrary(title, author, pages, read) {
-  const newBook = new Book(title, author, pages, read);
-  library.push(newBook);
-  showBooks();
+class Library {
+  constructor() {
+    this.books = [];
+  }
+
+  addBookToLibrary(title, author, pages, read) {
+    const newBook = new Book(title, author, pages, read);
+    this.books.push(newBook);
+    showBooks();
+  }
+
+  removeBookFromLibrary(title) {
+    this.books = this.books.filter((book) => book.title != title);
+    showBooks();
+  }
+
+  toggleReadStatus(title) {
+    const book = this.books.find(book => book.title === title);
+    book.read = !book.read;
+    showBooks();
+  }
+
+  isInLibrary (bookTitle) {
+    return this.books.some((book) => book.title === bookTitle);
+  }
 }
 
-function removeBookFromLibrary(title) {
-  library = library.filter((book) => book.title != title);
-  showBooks();
-}
-
-function toggleReadStatus(title) {
-  const book = library.find(book => book.title === title);
-  book.read = !book.read;
-  showBooks();
-}
+const library = new Library()
 
 function showBooks () {
   resetBookGrid();
 
-  library.forEach(book => {
+  library.books.forEach(book => {
     const card = document.createElement("div");
     const title = document.createElement("h2");
     const author = document.createElement("p");
@@ -74,18 +92,14 @@ function resetBookGrid () {
   bookGrid.innerHTML = "";
 }
 
-function isInLibrary (bookTitle) {
-  return library.some((book) => book.title === bookTitle);
-}
-
 const removeBook = (e) => {
   const book = e.target.parentNode.parentNode.firstChild.innerText;
-  removeBookFromLibrary(book);
+  library.removeBookFromLibrary(book);
 }
 
 const toggleRead = (e) => {
   const book = e.target.parentNode.parentNode.firstChild.innerText;
-  toggleReadStatus(book);
+  library.toggleReadStatus(book);
 }
 
 newBookBtn.addEventListener("click", () => {
@@ -100,12 +114,12 @@ confirmBtn.addEventListener("click", (event) => {
   const pages = document.querySelector("#pages");
   const read = document.querySelector("#read");
   
-  if (isInLibrary(title.value) === true) {
+  if (library.isInLibrary(title.value) === true) {
     alert("Book is already in the Library!");
     return;
   }
 
-  addBookToLibrary(
+  library.addBookToLibrary(
     title.value,
     author.value,
     pages.value,
@@ -117,5 +131,6 @@ confirmBtn.addEventListener("click", (event) => {
 });
 
 
-addBookToLibrary("Hobbit", "Dimitri", 300, true);
-addBookToLibrary("mindset", "Dimitri", 200, false);
+library.addBookToLibrary("Mindset", "Carol S. Dweck", 276, true);
+library.addBookToLibrary("Outlive", "Petter Attia", 496, true);
+library.addBookToLibrary("Eloquent JavaScript", "Marijn Haverbeke", 224, false);
