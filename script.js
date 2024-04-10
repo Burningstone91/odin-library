@@ -34,10 +34,11 @@ function showBooks () {
 
   library.forEach(book => {
     const card = document.createElement("div");
-    const title = document.createElement("h3");
+    const title = document.createElement("h2");
     const author = document.createElement("p");
     const pages = document.createElement("p");
     const read = document.createElement("p");
+    const buttonDiv = document.createElement("div");
     const readBtn = document.createElement("button");
     const removeBtn = document.createElement("button");
 
@@ -46,13 +47,14 @@ function showBooks () {
     author.classList.add("author");
     pages.classList.add("pages");
     read.classList.add("read");
+
     readBtn.onclick = toggleRead;
     removeBtn.onclick = removeBook;
 
     title.textContent = book.title;
-    author.textContent = book.author;
-    pages.textContent = book.pages;
-    read.textContent = book.read ? "Yes" : "No";
+    author.textContent = "by " + book.author;
+    pages.textContent = "Pages: " + book.pages;
+    read.textContent = book.read ? "Currently Reading" : "Finished";
     readBtn.textContent = book.read ? "Not Read" : "Read";
     removeBtn.textContent = "Remove";
 
@@ -60,8 +62,9 @@ function showBooks () {
     card.appendChild(author);
     card.appendChild(pages);
     card.appendChild(read);
-    card.appendChild(readBtn);
-    card.appendChild(removeBtn);
+    card.appendChild(buttonDiv);
+    buttonDiv.appendChild(readBtn);
+    buttonDiv.appendChild(removeBtn);
 
     bookGrid.appendChild(card);
   });
@@ -76,12 +79,12 @@ function isInLibrary (bookTitle) {
 }
 
 const removeBook = (e) => {
-  const book = e.target.parentNode.firstChild.innerText;
+  const book = e.target.parentNode.parentNode.firstChild.innerText;
   removeBookFromLibrary(book);
 }
 
 const toggleRead = (e) => {
-  const book = e.target.parentNode.firstChild.innerText;
+  const book = e.target.parentNode.parentNode.firstChild.innerText;
   toggleReadStatus(book);
 }
 
